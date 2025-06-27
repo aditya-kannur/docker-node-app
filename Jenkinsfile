@@ -1,26 +1,29 @@
 pipeline {
   agent any
 
-  environment {
-    MONGO_URI = credentials('MONGO_URI')
-  }
-
   stages {
     stage('Clone Repo') {
       steps {
-        git 'https://github.com/aditya-kannur/docker-node-app'
+        git credentialsId: 'github-creds', url: 'https://github.com/YOUR_USERNAME/jenkins-test-app.git'
       }
     }
 
-    stage('Build Docker Image') {
+    stage('Build') {
       steps {
-        sh 'docker build -t node-app .'
+        echo 'Simulating Docker Build...'
+        // sh 'docker build -t test-app .'
       }
     }
 
-    stage('Run Docker Container') {
+    stage('Test') {
       steps {
-        sh 'docker run -d -p 3000:3000 -e MONGO_URI=$MONGO_URI node-app'
+        echo 'Run test cases here...'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        echo 'Deploying app...'
       }
     }
   }
