@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Clone Repo') {
       steps {
-        git credentialsId: 'github-creds', url: 'https://github.com/YOUR_USERNAME/jenkins-test-app.git'
+        git credentialsId: 'github-creds', url: 'https://github.com/aditya-kannur/docker-node-app'
       }
     }
 
